@@ -46,7 +46,8 @@ export class DetailsComponent {
   housingLocation: HousingLocation | undefined
   applyForm: FormGroup = new FormGroup({
     firstName: new FormControl(''),
-    lastName: new FormControl('')
+    lastName: new FormControl(''),
+    email : new FormControl(''),
   })
 
   constructor(){
@@ -58,10 +59,5 @@ export class DetailsComponent {
   }
 
   submitApplyForm(){
-    //alert("Hallo you submit a form");
-    //alert("Hallo : " + this.applyForm.value.firstName 
-    //  + " " + this.applyForm.value.lastName)
-
-    //panggil API simpan data registarsi via service
   }
 }

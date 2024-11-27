@@ -10,6 +10,7 @@ var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var mahasiswasRouter = require('./app_server/routes/mahasiswas');
 var housingsRouter = require('./app_server/routes/housings')
+var applyRouter = require ('./app_server/routes/apply')
 var app = express();
 
 // view engine setup
@@ -31,7 +32,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', mahasiswasRouter);
 app.use('/housing',housingsRouter);
-
+app.use('/register',applyRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

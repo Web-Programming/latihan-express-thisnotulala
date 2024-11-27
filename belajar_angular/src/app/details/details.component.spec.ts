@@ -20,4 +20,34 @@ describe('DetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  <form (ngSubmit)="applyToLiveHere()">
+  <label for="firstName">First Name</label>
+  <input
+    type="text"
+    id="firstName"
+    [(ngModel)]="firstName"
+    name="firstName"
+    required
+  />
+
+  <label for="lastName">Last Name</label>
+  <input
+    type="text"
+    id="lastName"
+    [(ngModel)]="lastName"
+    name="lastName"
+    required
+  />
+
+  <label for="email">Email</label>
+  <input
+    type="email"
+    id="email"
+    [(ngModel)]="email"
+    name="email"
+    required
+  />
+
+  <button type="submit">Apply to Live Here</button>
+</form>
 });

@@ -6,7 +6,7 @@ import { first } from 'rxjs';
   providedIn: 'root'
 })
 export class HousingService {
-  url = "http://localhost:3000/housing/housing";
+  url = "http://localhost:3000/housing";
   constructor() { }
 
   async getAllHousingLocations() : Promise<HousingLocation[]>{
@@ -20,6 +20,29 @@ export class HousingService {
    
   }
   SubmitApplication(firstName:String, lastName : String, email: String){
-    console.log(firstName, lastName , email);
+    const apiUrl = 'http://localhost:3000/register'; // Ganti dengan URL backend Anda
+  const body = { firstname: firstName, lastname: lastName, email: email };
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log('Registration successful:', data);
+      alert('Application submitted successfully!');
+    })
+    .catch((error) => {
+      console.error('Error during registration:', error);
+      alert('Failed to submit application.');
+    });
   }
 }
