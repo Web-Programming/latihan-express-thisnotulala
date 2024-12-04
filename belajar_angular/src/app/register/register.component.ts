@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,9 @@ export class RegisterComponent {
    registerForm: FormGroup;
   formError: String ="";
   
-  //Inject class Router dan service authentication  
+  //Inject class Router dan service authentication 
+  router: Router = inject(Router);
+  authService: AuthenticationService = inject(AuthenticationService);
 
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
@@ -42,6 +46,16 @@ export class RegisterComponent {
 
       console.log('Form submitted', formData);
       //Panggil method submitRegister()
+      this.authService.submitRegister(this.registerForm).then((res)=>{
+        if(res.message !=null){
+          this.formError = res.message;
+        }else if(res.token !=null){
+          //this.authService.setToken(res.token);
+          this.router.navigateByUrl('/');
+        }else{
+          this.formError = 'Register failed, please try again';
+        }
+     });
     } else {
       this.formError = 'All fields are required, please try again';
       //console.log('Form is not valid');

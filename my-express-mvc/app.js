@@ -12,11 +12,11 @@ var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var mahasiswasRouter = require('./app_server/routes/mahasiswas');
 var housingsRouter = require('./app_server/routes/housings')
-var applyRouter = require ('./app_server/routes/apply')
+var applyRouter = require('./app_server/routes/apply')
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname,'app_server', 'views'));
+app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -33,15 +33,15 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', mahasiswasRouter);
-app.use('/housing',housingsRouter);
-app.use('/register',applyRouter)
+app.use('/housing', housingsRouter);
+app.use('/register', applyRouter)
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
